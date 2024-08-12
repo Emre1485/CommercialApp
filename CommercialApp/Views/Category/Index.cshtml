@@ -1,0 +1,32 @@
+﻿
+@model List<Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+        <td>Id</td>
+        <td>Kategori</td>
+        <td>Güncelle</td>
+        <td>Sil</td>
+    </tr>
+    @foreach (var cat in Model)
+    {
+        <tr>
+            <td>@cat.Id</td>
+            <td>@cat.Name</td>
+            <td>
+                <form asp-action="DeleteCategory" method="post">
+                    <input type="hidden" name="id" value="@cat.Id" />
+                    <button type="submit" class="btn btn-danger">Sil</button>
+                </form>
+            <td>
+                <a asp-action="UpdateCategory" asp-route-id="@cat.Id" class="btn btn-warning">Güncelle</a>
+            </td>
+        </tr>
+    }
+</table>
+<a asp-action="CreateCategory"class="btn btn-primary">Kategori Ekle</a>

@@ -1,0 +1,23 @@
+﻿@model CommercialApp.Models.Category
+@{
+    ViewData["Title"] = "UpdateCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Kategori Güncelle</h1>
+
+<hr />
+
+@using (Html.BeginForm("UpdateCategory", "Category", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(x=>x.Name)
+        @Html.TextBoxFor(x=>x.Name, new {@class="form-control"})
+        @Html.HiddenFor(x=>x.Id)
+    </div>
+    <button class="btn btn-warning">Güncelle</button>
+}
+
+<div>
+    <a asp-action="Index">Geri dön</a>
+</div>
