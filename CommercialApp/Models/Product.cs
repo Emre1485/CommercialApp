@@ -17,7 +17,8 @@ namespace CommercialApp.Models
         public bool State { get; set; }
         [StringLength(256)]
         public string Image { get; set; }
-        public Category Category { get; set; }
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
 
         public ICollection<SaleTransaction> SaleTransactions { get; set; }
 

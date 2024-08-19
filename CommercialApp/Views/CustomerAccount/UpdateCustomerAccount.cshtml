@@ -1,0 +1,43 @@
+﻿@model CommercialApp.Models.CustomerAccount
+
+
+@{
+    ViewData["Title"] = "UpdateCustomerAccount";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Cari Güncelle</h1>
+
+<hr />
+@using (Html.BeginForm("UpdateCustomerAccount", "CustomerAccount", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x=> x.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Surname)
+        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Surname)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.City)
+        @Html.TextBoxFor(x => x.City, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.City)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Email)
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Email, "", new{@style ="color:red"})
+    </div>
+    <button class="btn btn-warning">Güncelle</button>
+}
+
+<hr />
+
+<div>
+    <a asp-action="Index">Geri dön</a>
+</div>
+

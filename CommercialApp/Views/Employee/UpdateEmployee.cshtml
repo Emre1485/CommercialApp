@@ -1,0 +1,40 @@
+﻿@model CommercialApp.Models.Employee
+
+@{
+    ViewData["Title"] = "UpdateEmployee";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Cari Güncelle</h1>
+
+<hr />
+@using (Html.BeginForm("UpdateEmployee", "Employee", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div class="form-group">
+        @Html.LabelFor(x => x.Name)
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Surname)
+        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.Image)
+        @Html.TextBoxFor(x => x.Image, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.DepartmentId, "Kategori")
+        @Html.DropDownListFor(x => x.DepartmentId,
+                new SelectList(ViewBag.Departments, "Id", "Name"),
+                "Departman Seçiniz",
+                new { @class = "form-control" })
+    </div>
+    <button class="btn btn-warning">Güncelle</button>
+}
+
+<hr />
+
+<div>
+    <a asp-action="Index">Geri dön</a>
+</div>

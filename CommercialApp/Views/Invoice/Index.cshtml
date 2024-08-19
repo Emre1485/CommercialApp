@@ -1,0 +1,43 @@
+﻿@model List<Invoice>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Index</h1>
+
+
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+        <td>Id</td>
+        <td>Sıra No</td>
+        <td>Seri No</td>
+        <td>Tarih</td>
+        <td>Saat</td>
+        <td>Vergi Dairesi</td>
+        <td>Teslim Eden</td>
+        <td>Teslim Alan</td>
+        <td>Detaylar</td>
+        <td>Güncelle</td>
+    </tr>
+    @foreach (var inv in Model)
+    {
+        <tr>
+            <td>@inv.Id</td>
+            <td>@inv.InvoiceNumber</td>
+            <td>@inv.InvoiceSeries</td>
+            <td>@inv.Date</td>
+            <td>@inv.Time</td>
+            <td>@inv.TaxOffice</td>
+            <td>@inv.Sender</td>
+            <td>@inv.Receiver</td>
+            <td><a asp-action="Details" asp-controller="Invoice" asp-route-id="@inv.Id" class="btn btn-info">Detay</a></td>
+            <td>
+                <a asp-action="UpdateInvoice" asp-route-id="@inv.Id" class="btn btn-warning">Güncelle</a>
+            </td>
+            
+        </tr>
+    }
+</table>
+<a asp-action="CreateInvoice" class="btn btn-primary">Fatura Ekle</a>

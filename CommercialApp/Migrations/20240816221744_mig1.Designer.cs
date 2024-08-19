@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CommercialApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20240811143406_mig0")]
-    partial class mig0
+    [Migration("20240816221744_mig1")]
+    partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,6 +68,33 @@ namespace CommercialApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Bilgisayar"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Telefon"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Mobilya"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Beyaz Eşya"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Mutfak"
+                        });
                 });
 
             modelBuilder.Entity("CommercialApp.Models.CustomerAccount", b =>
@@ -93,6 +120,9 @@ namespace CommercialApp.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
 
+                    b.Property<bool>("State")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -101,6 +131,35 @@ namespace CommercialApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("CustomerAccounts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            City = "Amasya",
+                            Email = "mail",
+                            Name = "Merve",
+                            State = true,
+                            Surname = "Sönmez"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            City = "Kütahya",
+                            Email = "mail",
+                            Name = "Tuğba",
+                            State = true,
+                            Surname = "Erman"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            City = "Ankara",
+                            Email = "mail",
+                            Name = "Erkan",
+                            State = true,
+                            Surname = "Cenk"
+                        });
                 });
 
             modelBuilder.Entity("CommercialApp.Models.Department", b =>
@@ -116,9 +175,38 @@ namespace CommercialApp.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
 
+                    b.Property<bool>("State")
+                        .HasColumnType("boolean");
+
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Yönetim",
+                            State = true
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Muhasebe",
+                            State = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Reklam",
+                            State = true
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Ticaret",
+                            State = true
+                        });
                 });
 
             modelBuilder.Entity("CommercialApp.Models.Employee", b =>
@@ -152,6 +240,40 @@ namespace CommercialApp.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DepartmentId = 1,
+                            Image = "img",
+                            Name = "Emre",
+                            Surname = "Alpay"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DepartmentId = 2,
+                            Image = "img",
+                            Name = "Elif",
+                            Surname = "Su"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DepartmentId = 3,
+                            Image = "img",
+                            Name = "Cenk",
+                            Surname = "Cem"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DepartmentId = 4,
+                            Image = "img",
+                            Name = "Buse",
+                            Surname = "Gül"
+                        });
                 });
 
             modelBuilder.Entity("CommercialApp.Models.Expense", b =>
@@ -296,6 +418,68 @@ namespace CommercialApp.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Brand = "Asus",
+                            BuyingPrice = 1000m,
+                            CategoryId = 1,
+                            Image = "img",
+                            Name = "Asus UltraBook",
+                            SellingPrice = 1500m,
+                            State = true,
+                            Stock = (short)100
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Brand = "Apple",
+                            BuyingPrice = 10030m,
+                            CategoryId = 2,
+                            Image = "img",
+                            Name = "Iphone 13",
+                            SellingPrice = 12500m,
+                            State = true,
+                            Stock = (short)100
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Brand = "IKEA",
+                            BuyingPrice = 500m,
+                            CategoryId = 3,
+                            Image = "img",
+                            Name = "Salon Takımı",
+                            SellingPrice = 700m,
+                            State = true,
+                            Stock = (short)100
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Brand = "Alarko",
+                            BuyingPrice = 1000m,
+                            CategoryId = 4,
+                            Image = "img",
+                            Name = "Kombi",
+                            SellingPrice = 2500m,
+                            State = true,
+                            Stock = (short)100
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Brand = "Siemens",
+                            BuyingPrice = 10000m,
+                            CategoryId = 5,
+                            Image = "img",
+                            Name = "Çırpıcı",
+                            SellingPrice = 15000m,
+                            State = true,
+                            Stock = (short)100
+                        });
                 });
 
             modelBuilder.Entity("CommercialApp.Models.SaleTransaction", b =>

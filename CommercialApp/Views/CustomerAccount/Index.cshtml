@@ -1,0 +1,41 @@
+﻿@model List<CustomerAccount>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Cariler</h1>
+
+<table class="table table-hover table-striped" style="margin-top:20px">
+    <thead class="thead-dark">
+        <tr>
+            <th>Cari Id</th>
+            <th>Ad-Soyad</th>
+            <th>Şehir</th>
+            <th>Mail</th>
+            <th>Detaylar</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cus in Model)
+        {
+            <tr>
+                <td>@cus.Id</td>
+                <td>@cus.Name @cus.Surname</td>
+                <td>@cus.City</td>
+                <td>@cus.Email</td>
+                <td><a asp-action="Details" asp-route-id="@cus.Id" class="btn btn-info">Satış Geçmişi</a> </td>
+                <td><a asp-action="UpdateCustomerAccount" asp-route-id="@cus.Id" class="btn btn-warning">Güncelle</a> </td>
+                <td>
+                    <form asp-action="DeleteCustomerAccount" method="post">
+                        <input type="hidden" name="id" value="@cus.Id" />
+                        <button type="submit" class="btn btn-danger">Sil</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="CreateCustomerAccount" class="btn btn-primary">Cari Ekle</a>

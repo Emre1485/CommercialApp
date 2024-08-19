@@ -1,0 +1,43 @@
+﻿@model CommercialApp.Models.SaleTransaction
+
+@{
+    ViewData["Title"] = "UpdateSale";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Satış Güncelle</h1>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("UpdateSale", "Sale", FormMethod.Post))
+        {
+            @Html.HiddenFor(x => x.Id)
+            <div class="form-group">
+                @Html.LabelFor(x => x.Quantity, "Adet")
+                @Html.TextBoxFor(x => x.Quantity, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(x => x.Price, "Fiyat")
+                @Html.TextBoxFor(x => x.Price, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(x => x.TotalAmount, "Toplam Tutar")
+                @Html.TextBoxFor(x => x.TotalAmount, new { @class = "form-control" })
+            </div>
+            
+            @* <div class="form-group">
+                @Html.LabelFor(x => x.TransactionDate)
+                @Html.TextBoxFor(x => x.TransactionDate, new { @class = "form-control" })
+            </div> *@
+
+            <button class="btn btn-warning">Güncelle</button>
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Geri dön</a>
+</div>

@@ -8,6 +8,7 @@ namespace CommercialApp.Models
         public int Id { get; set; }
         [StringLength(30)]
         public string Name { get; set; }
+        public bool State { get; set; } = true;
         public ICollection<Employee> Employees { get; set; }
     }
 }

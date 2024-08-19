@@ -53,15 +53,15 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-tools"></i></div>
                             Ürünler
                         </a>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" asp-controller="Department" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
                             Departmanlar
                         </a>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" asp-controller="Employee" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
                             Personel
                         </a>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" asp-controller="CustomerAccount" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-book"></i></div>
                             Cariler
                         </a>
@@ -101,21 +101,25 @@
                         </div>
 
                         <div class="sb-sidenav-menu-heading">Rapor & Fatura</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" asp-controller="Invoice" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-receipt"></i></div>
-                            Fatura
+                            Faturalar
                         </a>
                         <a class="nav-link" href="index.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-file-invoice"></i></div>
                             Fatura Kalem
                         </a>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" asp-controller="Sale" asp-action="Index">
                             <div class="sb-nav-link-icon"><i class="fas fa-dollar-sign"></i></div>
-                            Gider
+                            Satışlar
                         </a>
                         <a class="nav-link" href="index.html">
+                            <div class="sb-nav-link-icon"><i class="fas fa-calculator"></i></div>
+                            Giderler
+                        </a>
+                        <a class="nav-link" asp-controller="Product" asp-action="ProductList">
                             <div class="sb-nav-link-icon"><i class="fas fa-file-alt"></i></div>
-                            Hareketler
+                            PDF ~ Excel
                         </a>
                         <a class="nav-link" href="index.html">
                             <div class="sb-nav-link-icon"><i class="fa fa-chart-area"></i></div>

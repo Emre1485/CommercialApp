@@ -3,6 +3,7 @@ using System;
 using CommercialApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CommercialApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240816213458_mig0")]
+    partial class mig0
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,9 +120,6 @@ namespace CommercialApp.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
 
-                    b.Property<bool>("State")
-                        .HasColumnType("boolean");
-
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -137,7 +136,6 @@ namespace CommercialApp.Migrations
                             City = "Amasya",
                             Email = "mail",
                             Name = "Merve",
-                            State = true,
                             Surname = "Sönmez"
                         },
                         new
@@ -146,7 +144,6 @@ namespace CommercialApp.Migrations
                             City = "Kütahya",
                             Email = "mail",
                             Name = "Tuğba",
-                            State = true,
                             Surname = "Erman"
                         },
                         new
@@ -155,7 +152,6 @@ namespace CommercialApp.Migrations
                             City = "Ankara",
                             Email = "mail",
                             Name = "Erkan",
-                            State = true,
                             Surname = "Cenk"
                         });
                 });
@@ -333,10 +329,8 @@ namespace CommercialApp.Migrations
                         .HasMaxLength(60)
                         .HasColumnType("character varying(60)");
 
-                    b.Property<string>("Time")
-                        .IsRequired()
-                        .HasMaxLength(5)
-                        .HasColumnType("character varying(5)");
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 

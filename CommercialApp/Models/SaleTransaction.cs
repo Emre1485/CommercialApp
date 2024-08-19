@@ -10,8 +10,11 @@ namespace CommercialApp.Models
         public int Quantity { get; set; }
         public decimal Price { get; set; }
         public decimal TotalAmount { get; set; }
-        public Product Products { get; set; }
-        public CustomerAccount CustomerAccounts { get; set; }
-        public Employee Employees { get; set; }
+        public int ProductsId { get; set; }
+        public virtual Product Products { get; set; }
+        public int CustomerAccountsId { get; set; }
+        public virtual CustomerAccount CustomerAccounts { get; set; }
+        public int EmployeesId { get; set; }
+        public virtual Employee Employees { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace CommercialApp.Models
         [StringLength(16)]
         public string InvoiceSeries { get; set; }
         public DateTime Date { get; set; }
+        [StringLength(5)]
         public DateTime Time { get; set; }
         [StringLength(60)]
         public string TaxOffice { get; set; }

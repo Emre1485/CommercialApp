@@ -13,7 +13,8 @@ namespace CommercialApp.Models
         [StringLength(256)]
         public string Image { get; set; }
         public ICollection<SaleTransaction> SaleTransactions { get; set; }
-        public Department Department { get; set; }
+        public int DepartmentId { get; set; }
+        public virtual Department Department { get; set; }
     }
 
     

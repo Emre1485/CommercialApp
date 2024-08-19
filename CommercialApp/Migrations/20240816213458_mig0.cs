@@ -60,7 +60,8 @@ namespace CommercialApp.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false)
+                    Name = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
+                    State = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -207,6 +208,62 @@ namespace CommercialApp.Migrations
                         principalTable: "Products",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Categories",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Bilgisayar" },
+                    { 2, "Telefon" },
+                    { 3, "Mobilya" },
+                    { 4, "Beyaz Eşya" },
+                    { 5, "Mutfak" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CustomerAccounts",
+                columns: new[] { "Id", "City", "Email", "Name", "Surname" },
+                values: new object[,]
+                {
+                    { 1, "Amasya", "mail", "Merve", "Sönmez" },
+                    { 2, "Kütahya", "mail", "Tuğba", "Erman" },
+                    { 3, "Ankara", "mail", "Erkan", "Cenk" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Departments",
+                columns: new[] { "Id", "Name", "State" },
+                values: new object[,]
+                {
+                    { 1, "Yönetim", true },
+                    { 2, "Muhasebe", true },
+                    { 3, "Reklam", true },
+                    { 4, "Ticaret", true }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "Id", "DepartmentId", "Image", "Name", "Surname" },
+                values: new object[,]
+                {
+                    { 1, 1, "img", "Emre", "Alpay" },
+                    { 2, 2, "img", "Elif", "Su" },
+                    { 3, 3, "img", "Cenk", "Cem" },
+                    { 4, 4, "img", "Buse", "Gül" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Products",
+                columns: new[] { "Id", "Brand", "BuyingPrice", "CategoryId", "Image", "Name", "SellingPrice", "State", "Stock" },
+                values: new object[,]
+                {
+                    { 1, "Asus", 1000m, 1, "img", "Asus UltraBook", 1500m, true, (short)100 },
+                    { 2, "Apple", 10030m, 2, "img", "Iphone 13", 12500m, true, (short)100 },
+                    { 3, "IKEA", 500m, 3, "img", "Salon Takımı", 700m, true, (short)100 },
+                    { 4, "Alarko", 1000m, 4, "img", "Kombi", 2500m, true, (short)100 },
+                    { 5, "Siemens", 10000m, 5, "img", "Çırpıcı", 15000m, true, (short)100 }
                 });
 
             migrationBuilder.CreateIndex(

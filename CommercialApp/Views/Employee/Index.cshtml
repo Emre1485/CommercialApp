@@ -1,0 +1,29 @@
+﻿@model List<Employee>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>Personeller </h1>
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+        <td>Id</td>
+        <td>Ad Soyad</td>
+        <td>Görsel</td>
+        <td>Departman</td>
+        <td>Satışlar</td>
+        <td>Güncelle</td>
+    </tr>
+    @foreach (var emp in Model)
+    {
+        <tr>
+            <td>@emp.Id</td>
+            <td>@emp.Name @emp.Surname</td>
+            <td>@emp.Image</td>
+            <td>@emp.Department.Name</td>
+            <td><a asp-action="EmployeeSales" asp-controller="Department" asp-route-id="@emp.Id" class="btn btn-info">Detay</a></td>
+            <td><a asp-action="UpdateEmployee" asp-route-id="@emp.Id" class="btn btn-warning">Güncelle</a></td>
+        </tr>
+    }
+</table>
+<a asp-action="CreateEmployee" class="btn btn-primary">Personel Ekle</a>
