@@ -81,7 +81,7 @@ namespace CommercialApp.Controllers
             sal.TotalAmount = sale.TotalAmount;
             sal.CustomerAccountsId = sale.CustomerAccountsId;
             sal.EmployeesId = sale.EmployeesId;
-            sal.TransactionDate = sale.TransactionDate;
+            sal.TransactionDate = sale.TransactionDate.ToUniversalTime();
             _context.SaveChanges();
             return RedirectToAction("Index");
         }

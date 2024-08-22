@@ -1,0 +1,39 @@
+﻿@model List<CommercialApp.Models.InvoiceItem>
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Fatura Kalemleri</h1>
+
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Açıklama</th>
+            <th>Miktar</th>
+            <th>Birim Fiyat</th>
+            <th>Toplam Tutar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var inv in Model)
+        {
+            <tr>
+                <td>@inv.Id</td>
+                <td>@inv.Description</td>
+                <td>@inv.Quantity</td>
+                <td>@inv.UnitPrice</td>
+                <td>@inv.TotalAmount</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a asp-action="CreateItem" class="btn btn-success">Yeni Kalem Ekle</a>
+</div>
+<br />
+<div>
+    <a asp-action="Index">Geri dön</a>
+</div>

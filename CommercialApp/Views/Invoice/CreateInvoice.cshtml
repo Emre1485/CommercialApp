@@ -1,0 +1,61 @@
+﻿@model CommercialApp.Models.Invoice
+
+@{
+    ViewData["Title"] = "CreateInvoice";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Fatura Oluştur</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateInvoice">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="InvoiceSeries" class="control-label">Seri No</label>
+                <input asp-for="InvoiceSeries" class="form-control" />
+                <span asp-validation-for="InvoiceSeries" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InvoiceNumber" class="control-label">Sıra No</label>
+                <input asp-for="InvoiceNumber" class="form-control" />
+                <span asp-validation-for="InvoiceNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label">Tarih</label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Time" class="control-label">Saat</label>
+                <input asp-for="Time" class="form-control" />
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TaxOffice" class="control-label">Vergi Dairesi</label>
+                <input asp-for="TaxOffice" class="form-control" />
+                <span asp-validation-for="TaxOffice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sender" class="control-label">Teslim Eden</label>
+                <input asp-for="Sender" class="form-control" />
+                <span asp-validation-for="Sender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Receiver" class="control-label">Teslim Alan</label>
+                <input asp-for="Receiver" class="form-control" />
+                <span asp-validation-for="Receiver" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Fatura Oluştur" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Geri dön</a>
+</div>
+
