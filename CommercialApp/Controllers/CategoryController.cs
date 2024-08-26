@@ -2,6 +2,8 @@
 using CommercialApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using X.PagedList.Extensions;
+
 
 namespace CommercialApp.Controllers
 {
@@ -14,9 +16,10 @@ namespace CommercialApp.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1)
         {
-            var categories = _context.Categories.ToList();
+            var categories = _context.Categories.AsQueryable().ToPagedList(page, 5);
+            
             return View(categories);
         }
 

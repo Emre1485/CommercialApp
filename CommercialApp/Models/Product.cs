@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CommercialApp.Models
@@ -14,6 +15,7 @@ namespace CommercialApp.Models
         public short Stock { get; set; }
         public decimal BuyingPrice { get; set; }
         public decimal SellingPrice { get; set; }
+        [Display(Name ="Stokta Var")]
         public bool State { get; set; }
         [StringLength(256)]
         public string Image { get; set; }

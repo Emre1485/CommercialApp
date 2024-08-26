@@ -1,5 +1,7 @@
-﻿
-@model List<Category>
+﻿@using X.PagedList
+@using X.Web.PagedList
+
+@model IPagedList<Category>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,7 +10,6 @@
 
 <table class="table table-bordered" style="margin-top:20px">
     <tr>
-        <td>Id</td>
         <td>Kategori</td>
         <td>Güncelle</td>
         <td>Sil</td>
@@ -16,7 +17,6 @@
     @foreach (var cat in Model)
     {
         <tr>
-            <td>@cat.Id</td>
             <td>@cat.Name</td>
             <td>
                 <form asp-action="DeleteCategory" method="post">
@@ -29,4 +29,7 @@
         </tr>
     }
 </table>
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
 <a asp-action="CreateCategory"class="btn btn-primary">Kategori Ekle</a>

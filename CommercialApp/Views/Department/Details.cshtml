@@ -17,10 +17,7 @@
 <table class="table table-hover table-striped">
     <thead class="thead-dark">
         <tr>
-            <th>Personel Id</th>
-            <th>Ad</th>
-            <th>Soyad</th>
-            <th>Görsel</th>
+            <th>Personel</th>
             <th>Satışlar</th>
         </tr>
     </thead>
@@ -28,11 +25,7 @@
         @foreach (var employee in Model)
         {
             <tr>
-                <td>@employee.Id</td>
-                <td>@employee.Name</td>
-                <td>@employee.Surname</td>
-                <td>@employee.Image</td>
-                @* <td>@employee.SaleTransactions</td> *@
+                <td>@employee.Name @employee.Surname</td>
                 <td><a asp-action="EmployeeSales" asp-route-id="@employee.Id" class="btn btn-info"><i class="fas fa-info-circle"></i></a></td>
             </tr>
         }

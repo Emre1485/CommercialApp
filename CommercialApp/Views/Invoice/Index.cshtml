@@ -5,41 +5,63 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
-
+<br />
 
 <table class="table table-bordered" style="margin-top:20px">
     <tr>
-        <td>Id</td>
-        <td>Seri No</td>
-        <td>Sıra No</td>
+        <td>Seri Sıra No</td>
         <td>Tarih</td>
         <td>Saat</td>
-        <td>Vergi Dairesi</td>
-        <td>Teslim Eden</td>
-        <td>Teslim Alan</td>
         <td>Toplam</td>
         <td>Detaylar</td>
         <td>Güncelle</td>
+        <td>Yeni Kalem</td>
     </tr>
     @foreach (var inv in Model)
     {
         <tr>
-            <td>@inv.Id</td>
-            <td>@inv.InvoiceSeries</td>
-            <td>@inv.InvoiceNumber</td>
+            <td>@inv.InvoiceSeries@inv.InvoiceNumber</td>
+
             <td>@inv.Date</td>
             <td>@inv.Time</td>
-            <td>@inv.TaxOffice</td>
-            <td>@inv.Sender</td>
-            <td>@inv.Receiver</td>
-            <td>@inv.Amount</td>
-            <td><a asp-action="Details" asp-controller="Invoice" asp-route-id="@inv.Id" class="btn btn-info">Detay</a></td>
-            <td>
-                <a asp-action="UpdateInvoice" asp-route-id="@inv.Id" class="btn btn-warning">Güncelle</a>
-            </td>
-            
+            <td>@inv.Amount ₺</td>
+            <td><a asp-action="Details" asp-controller="Invoice" asp-route-id="@inv.Id" class="btn btn-info"><i class="fa fa-info-circle"></i></a></td>
+            <td><a asp-action="UpdateInvoice" asp-route-id="@inv.Id" class="btn btn-warning"><i class="fas fa-list-alt"></i></a></td>
+            <td><a asp-action="CreateItem" asp-route-id="@inv.Id" class="btn btn-success"><i class="fas fa-arrow-circle-up"></i></a></td>
+
         </tr>
     }
 </table>
 <a asp-action="CreateInvoice" class="btn btn-primary">Fatura Ekle</a>
+<br />
+<br />
+
+<button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#Modal1">Popup Penceresi</button>
+
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="model-header">
+                <h2 class="modal-title">Pop Diyalog Ekranı</h2>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered ">
+                    <tr>
+                        <td>Seri No</td>
+                        <td>Sıra No</td>
+                        <td>Tutar</td>
+                    </tr>
+                    @foreach (var i in Model)
+                    {
+                        <tr>
+                            <td>@i.InvoiceSeries</td>
+                            <td>@i.InvoiceNumber</td>
+                            <td>@i.Amount</td>
+                        </tr>
+                    }
+                </table>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,6 +14,8 @@ namespace CommercialApp.Models
         public string City { get; set; }
         [StringLength(50, ErrorMessage = "En fazla 50 karakter girebilirsiniz!")]
         public string Email { get; set; }
+        [StringLength(20)]
+        public string Password { get; set; } = "password123"; // DAHA SONRA SİL BUNU SEEDLERİ SİLDİKTEN SONRA
         public bool State { get; set; } = true;
         public ICollection<SaleTransaction> SaleTransactions { get; set; }
     }

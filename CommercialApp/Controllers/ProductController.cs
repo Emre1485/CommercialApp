@@ -2,6 +2,7 @@
 using CommercialApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using X.PagedList.Extensions;
 
 namespace CommercialApp.Controllers
 {
@@ -13,13 +14,24 @@ namespace CommercialApp.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string prd, int page = 1)
         {
-            var products = _context.Products.Include(p => p.Category)
+            var products = _context.Products
+                .Include(p => p.Category)
                 .Where(x => x.State == true)
-                .OrderBy(x => x.Id).ToList();
-            return View(products);
+                .OrderBy(x => x.Id)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(prd))
+            {
+                products = products.Where(x => x.Name.Contains(prd));
+            }
+            var pagedProducts = products.ToPagedList(page, 10);
+            ViewBag.CurrentFilter = prd;
+
+            return View(pagedProducts);
         }
+
 
         public IActionResult ProductList()
         {

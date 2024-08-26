@@ -1,0 +1,24 @@
+﻿@model List<SaleTransaction>
+@{
+    ViewData["Title"] = "Orders";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+<br />
+<h1>Siparişlerim</h1>
+<br />
+
+<table class="table table-striped">
+    <tr>
+        <th>Ürün</th>
+        <th>Fiyat</th>
+        <th>Sipariş Tarihi</th>
+    </tr>
+    @foreach (var orders in Model)
+    {
+        <tr>
+            <td>@orders.Products.Name</td>
+            <td>@orders.TotalAmount</td>
+            <td>@orders.TransactionDate.ToString("dd/MM/yyyy")</td>
+        </tr>
+    }
+</table>

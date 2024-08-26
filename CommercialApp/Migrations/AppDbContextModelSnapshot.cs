@@ -118,6 +118,11 @@ namespace CommercialApp.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
                     b.Property<bool>("State")
                         .HasColumnType("boolean");
 
@@ -137,6 +142,7 @@ namespace CommercialApp.Migrations
                             City = "Amasya",
                             Email = "mail",
                             Name = "Merve",
+                            Password = "password123",
                             State = true,
                             Surname = "Sönmez"
                         },
@@ -146,6 +152,7 @@ namespace CommercialApp.Migrations
                             City = "Kütahya",
                             Email = "mail",
                             Name = "Tuğba",
+                            Password = "password123",
                             State = true,
                             Surname = "Erman"
                         },
@@ -155,6 +162,7 @@ namespace CommercialApp.Migrations
                             City = "Ankara",
                             Email = "mail",
                             Name = "Erkan",
+                            Password = "password123",
                             State = true,
                             Surname = "Cenk"
                         });
@@ -218,10 +226,13 @@ namespace CommercialApp.Migrations
                     b.Property<int>("DepartmentId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Image")
                         .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("character varying(256)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -232,6 +243,11 @@ namespace CommercialApp.Migrations
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("character varying(30)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
@@ -244,33 +260,41 @@ namespace CommercialApp.Migrations
                         {
                             Id = 1,
                             DepartmentId = 1,
+                            Email = "@gmail.com",
                             Image = "img",
                             Name = "Emre",
-                            Surname = "Alpay"
+                            Surname = "Alpay",
+                            Title = "title"
                         },
                         new
                         {
                             Id = 2,
                             DepartmentId = 2,
+                            Email = "@gmail.com",
                             Image = "img",
                             Name = "Elif",
-                            Surname = "Su"
+                            Surname = "Su",
+                            Title = "title"
                         },
                         new
                         {
                             Id = 3,
                             DepartmentId = 3,
+                            Email = "@gmail.com",
                             Image = "img",
                             Name = "Cenk",
-                            Surname = "Cem"
+                            Surname = "Cem",
+                            Title = "title"
                         },
                         new
                         {
                             Id = 4,
                             DepartmentId = 4,
+                            Email = "@gmail.com",
                             Image = "img",
                             Name = "Buse",
-                            Surname = "Gül"
+                            Surname = "Gül",
+                            Title = "title"
                         });
                 });
 
@@ -377,6 +401,29 @@ namespace CommercialApp.Migrations
                     b.HasIndex("InvoiceId");
 
                     b.ToTable("InvoiceItems");
+                });
+
+            modelBuilder.Entity("CommercialApp.Models.PDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ProductInfo")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("character varying(2000)");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PDetails");
                 });
 
             modelBuilder.Entity("CommercialApp.Models.Product", b =>
@@ -524,6 +571,27 @@ namespace CommercialApp.Migrations
                     b.HasIndex("ProductsId");
 
                     b.ToTable("SaleTransactions");
+                });
+
+            modelBuilder.Entity("CommercialApp.Models.ToDo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("State")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ToDos");
                 });
 
             modelBuilder.Entity("CommercialApp.Models.Employee", b =>

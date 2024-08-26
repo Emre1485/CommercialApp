@@ -18,6 +18,7 @@ namespace CommercialApp.Controllers
         {
             var val = _context.CustomerAccounts
                 .Where(x => x.State == true)
+                .OrderBy(x => x.Id)
                 .ToList();
             return View(val);
         }

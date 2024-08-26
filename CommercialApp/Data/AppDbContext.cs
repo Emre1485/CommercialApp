@@ -113,7 +113,7 @@ namespace CommercialApp.Data
                     Id = 1,
                     Name = "Emre",
                     Surname = "Alpay",
-                    Image = "img",
+                    ImageUrl = "img",
                     DepartmentId = 1,
                 },
                 new Employee
@@ -180,6 +180,8 @@ namespace CommercialApp.Data
         public DbSet<InvoiceItem> InvoiceItems { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<SaleTransaction> SaleTransactions { get; set; }
+        public DbSet<PDetail> PDetails { get; set; }
+        public DbSet<ToDo> ToDos { get; set; }
         
     }
 }

@@ -8,10 +8,11 @@ namespace CommercialApp.Controllers
     public class EmployeeController : Controller
     {
         private readonly AppDbContext _context;
-
-        public EmployeeController(AppDbContext context)
+        private readonly IWebHostEnvironment _env;
+        public EmployeeController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
 
         public IActionResult Index()
@@ -29,15 +30,8 @@ namespace CommercialApp.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //public IActionResult CreateEmployee(Employee employee)
-        //{
-        //    _context.Employees.Add(employee);
-        //    _context.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
         [HttpPost]
-        public IActionResult CreateEmployee(Employee employee)
+        public async Task<IActionResult> CreateEmployee(Employee employee)
         {
             if (employee.Department == null || employee.Department.Id == 0)
             {
@@ -54,9 +48,23 @@ namespace CommercialApp.Controllers
                 return View(employee);
             }
 
+            if (employee.Image != null && employee.Image.Length > 0)
+            {
+                string fileName = Path.GetFileName(employee.Image.FileName);
+                string filePath = Path.Combine(_env.WebRootPath, "images", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await employee.Image.CopyToAsync(stream);
+                }
+
+                employee.ImageUrl = "/images/" + fileName; // Görselin URL'sini saklayın
+            }
+
             employee.Department = department;
             _context.Employees.Add(employee);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
 
@@ -77,6 +85,16 @@ namespace CommercialApp.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
+        public IActionResult EmployeeDetail()
+        {
+            var employees = _context.Employees
+                .Include(x=>x.Department)
+                .ToList();
+            return View(employees);
+        }
+
+
 
     }
 }

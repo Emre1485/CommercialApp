@@ -1,4 +1,5 @@
 ﻿using CommercialApp.Data;
+using CommercialApp.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CommercialApp.Controllers
@@ -14,8 +15,14 @@ namespace CommercialApp.Controllers
 
         public IActionResult Index()
         {
-            var prods = _context.Products.Where(x=>x.Id == 3).ToList();
-            return View(prods);
+            var product_PDetail = new Product_PDetail
+            {
+                ProductVal = _context.Products.Where(x => x.Id == 5).ToList(),
+                PDetailVal = _context.PDetails.Where(x => x.Id == 5).ToList()
+            };
+
+            return View(product_PDetail);
         }
+
     }
 }

@@ -1,0 +1,29 @@
+﻿@model CustomerAccount
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_CustomerLayout.cshtml";
+}
+
+<br />
+<h1>Müşteri Bilgi Paneli</h1>
+@using (Html.BeginForm("Index2", "CustomerPanel", FormMethod.Post))
+{
+    <table class="table table-hover">
+        <tr>
+            <td><label>Mail Adresi: @User.Identity.Name</label></td>
+        </tr>
+        <tr>
+            <td>@Html.TextBoxFor(x => x.Name, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>@Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>@Html.TextBoxFor(x => x.City, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>@Html.TextBoxFor(x => x.Password, new { @class = "form-control" })</td>
+        </tr>
+    </table>
+    <button class="btn btn-warning">Bilgilerimi Güncelle</button>
+}

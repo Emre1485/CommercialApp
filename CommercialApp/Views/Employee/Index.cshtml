@@ -4,26 +4,37 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h1>Personeller </h1>
-<table class="table table-bordered" style="margin-top:20px">
-    <tr>
-        <td>Id</td>
-        <td>Ad Soyad</td>
-        <td>Görsel</td>
-        <td>Departman</td>
-        <td>Satışlar</td>
-        <td>Güncelle</td>
-    </tr>
-    @foreach (var emp in Model)
-    {
+<br />
+
+<table class="table table-hover table-striped" style="margin-top:20px">
+    <thead class="thead-dark">
         <tr>
-            <td>@emp.Id</td>
-            <td>@emp.Name @emp.Surname</td>
-            <td>@emp.Image</td>
-            <td>@emp.Department.Name</td>
-            <td><a asp-action="EmployeeSales" asp-controller="Department" asp-route-id="@emp.Id" class="btn btn-info">Detay</a></td>
-            <td><a asp-action="UpdateEmployee" asp-route-id="@emp.Id" class="btn btn-warning">Güncelle</a></td>
+            <td>Id</td>
+            <td>Ad Soyad</td>
+            <td>Görsel</td>
+            <td>Departman</td>
+            <td>Ünvan</td>
+            <td>Mail</td>
+            <td>Satışlar</td>
+            <td>Güncelle</td>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.Id</td>
+                <td>@emp.Name @emp.Surname</td>
+                <td>
+                    <img src="@emp.Image" style="width:100px; height:75px;" />
+                </td>
+                <td>@emp.Department.Name</td>
+                <td>@emp.Title</td>
+                <td>@emp.Email</td>
+                <td><a asp-action="EmployeeSales" asp-controller="Department" asp-route-id="@emp.Id" class="btn btn-info">Detay</a></td>
+                <td><a asp-action="UpdateEmployee" asp-route-id="@emp.Id" class="btn btn-warning">Güncelle</a></td>
+            </tr>
+        }
+    </tbody>
 </table>
 <a asp-action="CreateEmployee" class="btn btn-primary">Personel Ekle</a>

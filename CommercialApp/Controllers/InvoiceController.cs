@@ -1,6 +1,7 @@
 ﻿using CommercialApp.Data;
 using CommercialApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace CommercialApp.Controllers
 {
@@ -64,15 +65,22 @@ namespace CommercialApp.Controllers
         [HttpGet]
         public IActionResult CreateItem()
         {
+            ViewBag.Invoices = new SelectList(_context.Invoices, "Id", "Description");
             return View();
         }
 
         [HttpPost]
         public IActionResult CreateItem(InvoiceItem item)
         {
-            _context.InvoiceItems.Add(item);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _context.InvoiceItems.Add(item);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Invoices = new SelectList(_context.Invoices, "Id", "Description");
+            return View(item);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CommercialApp.Data;
+using CommercialApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -54,6 +55,18 @@ namespace CommercialApp.Controllers
                 .Sum(x => x.TotalAmount)
                 .ToString();
             return View();
+        }
+
+        public IActionResult Tables()
+        {
+            var query = from x in _context.CustomerAccounts group x by x.City
+                        into c
+                        select new ClassGroup
+                        {
+                            City = c.Key,
+                            Number = c.Count()
+                        };
+            return View(query.ToList());
         }
     }
 }

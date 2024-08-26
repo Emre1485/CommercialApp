@@ -3,7 +3,7 @@
     "CommercialApp": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "http://localhost:5015/Category/Index",
+      "launchUrl": "http://localhost:5015/Login/Index",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

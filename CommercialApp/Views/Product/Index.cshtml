@@ -1,38 +1,49 @@
-﻿@model List<Product>
+﻿@using X.PagedList
+@using X.Web.PagedList
+
+@model IPagedList<Product>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+<br />
+
+@using (Html.BeginForm("Index", "Product", FormMethod.Get, new { @class = "d-flex mb-4" }))
+{
+    <div class="input-group">
+        <input type="text" name="prd" class="form-control" placeholder="Ürün Adı Ara..." value="@ViewBag.CurrentFilter" />
+        <button class="btn btn-primary" type="submit">Ara</button>
+    </div>
+}
 
 <table class="table table-bordered" style="margin-top:20px">
     <tr>
-        <th>Id</th>
-        <th>Urun</th>
+        <th>Ürün</th>
         <th>Marka</th>
         <th>Stok</th>
         <th>Alış Fiyatı</th>
         <th>Satış Fiyatı</th>
         <th>Kategori</th>
-        <th>Görsel</th>
         <th>Sil</th>
         <th>Güncelle</th>
     </tr>
     @foreach(var prod in Model)
     {
         <tr>
-            <th>@prod.Id</th>
             <th>@prod.Name</th>
             <th>@prod.Brand</th>
             <th>@prod.Stock</th>
-            <th>@prod.BuyingPrice</th>
-            <th>@prod.SellingPrice</th>
+            <th>@prod.BuyingPrice ₺</th>
+            <th>@prod.SellingPrice ₺</th>
             <th>@prod.Category.Name</th>
-            <th>@prod.Image</th>
             <th><a class="btn btn-danger" asp-action="DeleteProduct"><i class="fas fa-minus-square"></i></a></th>
             <td><a class="btn btn-warning" asp-action="UpdateProduct" asp-route-id="@prod.Id"><i class="fas fa-edit"></i></a></td>
         </tr>
     }
 </table>
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>
 <a asp-action="CreateProduct" class="btn btn-primary">Ürün Ekle</a>
 
