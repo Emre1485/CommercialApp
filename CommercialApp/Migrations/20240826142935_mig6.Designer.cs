@@ -3,6 +3,7 @@ using System;
 using CommercialApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CommercialApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240826142935_mig6")]
+    partial class mig6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,62 +50,6 @@ namespace CommercialApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Admins");
-                });
-
-            modelBuilder.Entity("CommercialApp.Models.Cargo", b =>
-                {
-                    b.Property<int>("CargoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CargoId"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("VarChar(400)");
-
-                    b.Property<string>("Employee")
-                        .IsRequired()
-                        .HasColumnType("VarChar(30)");
-
-                    b.Property<string>("Receiver")
-                        .IsRequired()
-                        .HasColumnType("VarChar(30)");
-
-                    b.Property<string>("TrackingNumber")
-                        .IsRequired()
-                        .HasColumnType("VarChar(10)");
-
-                    b.HasKey("CargoId");
-
-                    b.ToTable("Cargos");
-                });
-
-            modelBuilder.Entity("CommercialApp.Models.CargoTracking", b =>
-                {
-                    b.Property<int>("CargoTrackingId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("CargoTrackingId"));
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("VarChar(150)");
-
-                    b.Property<string>("TrackingNumber")
-                        .IsRequired()
-                        .HasColumnType("VarChar(10)");
-
-                    b.HasKey("CargoTrackingId");
-
-                    b.ToTable("CargoTrackings");
                 });
 
             modelBuilder.Entity("CommercialApp.Models.Category", b =>

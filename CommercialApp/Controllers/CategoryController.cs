@@ -16,12 +16,14 @@ namespace CommercialApp.Controllers
             _context = context;
         }
 
+        [HttpGet]
         public IActionResult Index(int page = 1)
         {
             var categories = _context.Categories.AsQueryable().ToPagedList(page, 5);
             
             return View(categories);
         }
+
 
         [HttpGet]
         public IActionResult CreateCategory()

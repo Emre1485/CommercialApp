@@ -48,7 +48,7 @@ namespace CommercialApp.Controllers
                 return View(employee);
             }
 
-            if (employee.Image != null && employee.Image.Length > 0)
+            if (employee.ImageUrl != null && employee.ImageUrl.Length > 0)
             {
                 string fileName = Path.GetFileName(employee.Image.FileName);
                 string filePath = Path.Combine(_env.WebRootPath, "images", fileName);

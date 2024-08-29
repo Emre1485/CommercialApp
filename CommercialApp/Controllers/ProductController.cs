@@ -1,6 +1,7 @@
 ﻿using CommercialApp.Data;
 using CommercialApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList.Extensions;
 
@@ -92,8 +93,31 @@ namespace CommercialApp.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(product);
+        }
+
+        public IActionResult SellProduct(int id)
+        {
+
+            List<SelectListItem> ls = (from x in _context.Employees.ToList()
+                                       select new SelectListItem
+                                       {
+                                           Text = x.Name + " " + x.Surname,
+                                           Value = x.Id.ToString()
+                                       }).ToList();
+            ViewBag.lis = ls;
+            ViewBag.pid = _context.Products.Find(id).Id;
+            ViewBag.prd = _context.Products.Find(id).Name;
+            ViewBag.pric = _context.Products.Find(id).SellingPrice;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SellProduct(SaleTransaction sale)
+        {
+            sale.TransactionDate = DateTime.UtcNow;
+            _context.SaleTransactions.Add(sale);
+            _context.SaveChanges();
+            return RedirectToAction("Index","Sale");
         }
 
     }

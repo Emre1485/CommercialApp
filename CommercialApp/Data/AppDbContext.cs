@@ -107,40 +107,40 @@ namespace CommercialApp.Data
                 }
                 );
 
-            modelBuilder.Entity<Employee>().HasData(
-                new Employee
-                {
-                    Id = 1,
-                    Name = "Emre",
-                    Surname = "Alpay",
-                    ImageUrl = "img",
-                    DepartmentId = 1,
-                },
-                new Employee
-                {
-                    Id = 2,
-                    Name = "Elif",
-                    Surname = "Su",
-                    Image = "img",
-                    DepartmentId = 2,
-                },
-                new Employee
-                {
-                    Id = 3,
-                    Name = "Cenk",
-                    Surname = "Cem",
-                    Image = "img",
-                    DepartmentId = 3,
-                },
-                new Employee
-                {
-                    Id = 4,
-                    Name = "Buse",
-                    Surname = "Gül",
-                    Image = "img",
-                    DepartmentId = 4,
-                }
-                );
+            //modelBuilder.Entity<Employee>().HasData(
+            //    new Employee
+            //    {
+            //        Id = 1,
+            //        Name = "Emre",
+            //        Surname = "Alpay",
+            //        ImageUrl = "img",
+            //        DepartmentId = 1,
+            //    },
+            //    new Employee
+            //    {
+            //        Id = 2,
+            //        Name = "Elif",
+            //        Surname = "Su",
+            //        Image = "img",
+            //        DepartmentId = 2,
+            //    },
+            //    new Employee
+            //    {
+            //        Id = 3,
+            //        Name = "Cenk",
+            //        Surname = "Cem",
+            //        Image = "img",
+            //        DepartmentId = 3,
+            //    },
+            //    new Employee
+            //    {
+            //        Id = 4,
+            //        Name = "Buse",
+            //        Surname = "Gül",
+            //        Image = "img",
+            //        DepartmentId = 4,
+            //    }
+            //    );
 
             modelBuilder.Entity<CustomerAccount>().HasData(
                 new CustomerAccount
@@ -182,6 +182,8 @@ namespace CommercialApp.Data
         public DbSet<SaleTransaction> SaleTransactions { get; set; }
         public DbSet<PDetail> PDetails { get; set; }
         public DbSet<ToDo> ToDos { get; set; }
+        public DbSet<Cargo> Cargos { get; set; }
+        public DbSet<CargoTracking> CargoTrackings { get; set; }
         
     }
 }

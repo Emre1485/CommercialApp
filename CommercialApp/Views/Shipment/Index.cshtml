@@ -1,0 +1,43 @@
+﻿@using X.PagedList
+@using X.Web.PagedList
+
+@model IPagedList<Cargo>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<br />
+
+@using (Html.BeginForm("Index", "Shipment", FormMethod.Get, new { @class = "d-flex mb-4" }))
+{
+    <div class="input-group">
+        <input type="text" name="trackingNumber" class="form-control" placeholder="Kargo Takip Numarası Ara..." value="@ViewBag.CurrentFilter" />
+        <button class="btn btn-primary" type="submit">Ara</button>
+    </div>
+}
+
+<table class="table table-bordered" style="margin-top:20px">
+    <tr>
+        <td>Kargo Takip Kodu</td>
+        <td>Alıcı</td>
+        <td>Personel</td>
+        <td>Tarih</td>
+        <td>Detaylar</td>
+    </tr>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.TrackingNumber</td>
+            <td>@c.Receiver</td>
+            <td>@c.Employee</td>
+            <td>@c.Date</td>
+            <td><a asp-action="Details" asp-controller="Shipment" asp-route-id="@c.TrackingNumber" class="btn btn-info">Detay</a></td>
+        </tr>
+    }
+</table>
+<a asp-controller="Shipment" asp-action="CreateCargo" class="btn btn-primary">Kargo Girişi</a>
+
+<div>
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+</div>

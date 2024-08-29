@@ -36,41 +36,6 @@ namespace CommercialApp.Controllers
         {
             return PartialView();
         }
-        /*
-        [HttpPost]
-        public IActionResult LoginPartial(CustomerAccount cus)
-        {
-            var val = _context.CustomerAccounts
-                .FirstOrDefault(x => x.Email == cus.Email && x.Password == cus.Password);
-
-            if (val != null)
-            {
-                // Create claims and sign in
-                var claims = new List<Claim>
-        {
-            new Claim(ClaimTypes.Name, val.Email)
-        };
-
-                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                var authProperties = new AuthenticationProperties
-                {
-                    IsPersistent = false, // equivalent to false in FormsAuthentication.SetAuthCookie
-                };
-
-                HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties).Wait();
-
-                // Use TempData instead of Session for temporary data storage
-                TempData["Email"] = val.Email.ToString();
-
-                return RedirectToAction("Index", "CustomerPanel");
-            }
-
-            // Return to login view if login fails
-            return View("LoginPartial");
-        }
-
-        */
 
         [HttpPost]
         public IActionResult LoginPartial(CustomerAccount cus)

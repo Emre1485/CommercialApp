@@ -27,6 +27,7 @@
         <th>Kategori</th>
         <th>Sil</th>
         <th>Güncelle</th>
+        <th>Satış Yap</th>
     </tr>
     @foreach(var prod in Model)
     {
@@ -39,6 +40,7 @@
             <th>@prod.Category.Name</th>
             <th><a class="btn btn-danger" asp-action="DeleteProduct"><i class="fas fa-minus-square"></i></a></th>
             <td><a class="btn btn-warning" asp-action="UpdateProduct" asp-route-id="@prod.Id"><i class="fas fa-edit"></i></a></td>
+            <td><a class="btn btn-success" asp-action="SellProduct" asp-route-id="@prod.Id"><i class="fa fa-money-bill"></i></a></td>
         </tr>
     }
 </table>

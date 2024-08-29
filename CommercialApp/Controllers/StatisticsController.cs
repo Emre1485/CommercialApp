@@ -28,19 +28,16 @@ namespace CommercialApp.Controllers
                 .Where(x => x.SellingPrice == _context.Products.Max(y => y.SellingPrice))
                 .Select(x => x.Brand + " " + x.Name)
                 .FirstOrDefault();
-            // select Name from products where Max(SellingPrice) 
-            //ViewBag.d9 = _context.Products.Min(x=>x.SellingPrice).ToString();
-            // tekrar don burayı duzenle
             ViewBag.d10 = _context.Products
-    .FromSqlRaw(@"
-        SELECT p.""Name"",p.""Brand"", SUM(s.""Quantity"") AS TotalQuantitySold
-        FROM ""SaleTransactions"" s
-        INNER JOIN ""Products"" p ON s.""ProductsId"" = p.""Id""
-        GROUP BY p.""Name"", p.""Brand""
-        ORDER BY TotalQuantitySold DESC
-        LIMIT 1")
-    .Select(p => p.Brand + " "+ p.Name)
-    .FirstOrDefault();
+                            .FromSqlRaw(@"
+                            SELECT p.""Name"",p.""Brand"", SUM(s.""Quantity"") AS TotalQuantitySold
+                            FROM ""SaleTransactions"" s
+                            INNER JOIN ""Products"" p ON s.""ProductsId"" = p.""Id""
+                            GROUP BY p.""Name"", p.""Brand""
+                            ORDER BY TotalQuantitySold DESC
+                            LIMIT 1")
+                .Select(p => p.Brand + " " + p.Name)
+                .FirstOrDefault();
 
             ViewBag.d11 = _context.SaleTransactions.Sum(x => x.TotalAmount).ToString();
             ViewBag.d12 = _context.SaleTransactions
@@ -57,9 +54,13 @@ namespace CommercialApp.Controllers
             return View();
         }
 
+
+
+
         public IActionResult Tables()
         {
-            var query = from x in _context.CustomerAccounts group x by x.City
+            var query = from x in _context.CustomerAccounts
+                        group x by x.City
                         into c
                         select new ClassGroup
                         {

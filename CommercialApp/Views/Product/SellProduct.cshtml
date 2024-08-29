@@ -1,0 +1,56 @@
+﻿@model CommercialApp.Models.SaleTransaction
+
+@{
+    ViewData["Title"] = "SellProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<br />
+
+<h1>Satış</h1>
+
+<br />
+
+<div class="row">
+    <div class="col-md-4">
+        <form class="form-group" method="post">
+            <input type="hidden" name="ProductsId" value="@ViewBag.pid" class="form-control" />
+            <input type="text" name="Name" value="@ViewBag.prd" class="form-control" readonly/>
+            <br />
+            @Html.LabelFor(x => x.EmployeesId)
+            @Html.DropDownListFor(x=>x.EmployeesId, (List<SelectListItem>)
+                ViewBag.lis, new{@class = "form-control"})
+            <br />
+            @Html.LabelFor(x => x.CustomerAccountsId)
+            @Html.TextBoxFor(x => x.CustomerAccountsId, new { @class = "form-control" })
+            <br />
+            @Html.LabelFor(x => x.Quantity)
+            <input type="number" name="Quantity"class="form-control" max="100" min="1" id="txt1" onchange="sum()"/>
+            <br />
+            @Html.LabelFor(x => x.Price)
+            <input type="text" name="Price" value="@ViewBag.pric" class="form-control" readonly id="txt2" onkeyup="sum()" />
+            <br />
+            @Html.LabelFor(x => x.TotalAmount)
+            <input type="text" name="TotalAmount" value="0" class="form-control" id="txt3" readonly/>
+            <br />
+            
+            <button class="btn btn-primary">Satış Yap</button>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Geri dön</a>
+</div>
+
+<br />
+    <script>
+        function sum() {
+          var n1 = document.getElementById('txt1').value;
+          var n2 = document.getElementById('txt2').value;
+          var t = parseInt(n1) * parseInt(n2);
+          if (!isNaN(t)) {
+           document.getElementById('txt3').value = t;
+           }
+        }
+    </script>

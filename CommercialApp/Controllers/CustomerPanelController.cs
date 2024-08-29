@@ -18,7 +18,6 @@ namespace CommercialApp.Controllers
 		[Authorize]
 		public IActionResult Index()
 		{
-			//var cusMail = HttpContext.Session.GetString("Email");
 			var cusMail = User.FindFirstValue(ClaimTypes.Name);
 			var val = _context.CustomerAccounts
 				.FirstOrDefault(x => x.Email == cusMail);
